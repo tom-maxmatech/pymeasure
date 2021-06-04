@@ -2,6 +2,20 @@ from pymeasure.instruments.datron import datron1071
 from pymeasure.adapters import PrologixAdapter
 import time
 
+###################################################
+
+
+def countdown(t):
+    
+    while t:
+        mins, secs = divmod(t, 60)
+        timer = '{:02d}:{:02d}'.format(mins, secs)
+        print(timer, end="\r")
+        time.sleep(1)
+        t -= 1
+
+###################################################
+
 # Adapter Prologix USB GPIB Adapter
 adapter = PrologixAdapter('/dev/ttyUSB0')
 #Datron on GPIB Adresse 30
@@ -34,3 +48,27 @@ while n !=10:
     print (dmm.readval(trg=False)[0])
     n = n+1
 
+      
+
+#exit()
+dummy = input("enter start Cal.")
+dmm.cal_enable() 
+dummy = input("wait R")
+dmm.mode_ohm()
+dmm.rangemode("R4")
+dummy = input("4W Short, Set 4W, Enter start ZERO Cal.")
+print ('Wait for EMF stab.')
+countdown(120)
+dmm.cal_zero()
+print ('Wait for Cal ZERO')
+countdown(30)
+dummy = input("4W 10k Enter start Cal.")
+print ('Wait for EMF stab.')
+countdown(120)
+dmm.cal_gain()
+print ('Wait for Cal.')
+countdown(30)
+dummy = input("dis")
+dmm.cal_diable()
+
+###############################
