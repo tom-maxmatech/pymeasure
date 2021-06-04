@@ -57,7 +57,7 @@ class datron1071(Instrument):
     mode_dcacv()            set measurement mode AC Voltage coppling DC
     mode_dcaci()            set measurement mode AC Current coppling DC
     cal_enable()            enable CALIBRATION MODE (read Manual!)
-    cal_diable(self)        diable CALIBRATION MODE
+    cal_diable()            diable CALIBRATION MODE
     cal_zero()              DMM cal zero (read Manual!)
     cal_gain(opt: val)      Gain Cal of Range (read Manual!)
     cal_achf(opt: val)      Full Range HF @ AC, Cal of Range (read Manual!)
